@@ -1,20 +1,19 @@
 # Advection–Diffusion: Galerkin vs SUPG
 
-**A reproducible Python/SciPy implementation of one-dimensional finite-element
+**A reproducible Python/SciPy implementation of one dimensional finite element
 advection–diffusion, comparing standard Galerkin discretisation with
-streamline-upwind/Petrov–Galerkin (SUPG) stabilisation.**
+streamline upwind/Petrov–Galerkin (SUPG) stabilisation.**
 
 I revisited my Computational Fluid Dynamics coursework and developed this
 standalone Python project to examine why standard Galerkin finite elements can
 produce nonphysical oscillations in advection-dominated regimes, and how
-residual-based streamline stabilisation changes the numerical solution.
+residual based streamline stabilisation changes the numerical solution.
 Selected, **unchanged** original MATLAB coursework scripts are archived under
-[`legacy/coursework/`](legacy/coursework/); the tested Python code is a **new
-implementation**, not a claim that the historical scripts were fully validated.
+[`legacy/coursework/`](legacy/coursework/). 
 
 ## Results
 
-### Advection-dominated boundary layer
+### Advection dominated boundary layer
 
 ![Comparison of Galerkin, SUPG and analytical reference](figures/galerkin_vs_supg.png)
 
@@ -25,8 +24,8 @@ the nodal oscillations and reproduces the analytical zero-source solution
 at the grid points to numerical precision.
 
 **Caution:** the smooth black curve is the analytical solution and the green
-line is a piecewise-linear finite-element interpolant. SUPG is *nodally exact*
-for this specific constant-coefficient, zero-source setup, but the sharp layer
+line is a piecewise linear finite-element interpolant. SUPG is *nodally exact*
+for this specific constant coefficient, zero source setup, but the sharp layer
 is **not resolved between nodes** on this coarse mesh.
 
 ### Grid refinement with a nonzero source
@@ -36,35 +35,34 @@ is **not resolved between nodes** on this coarse mesh.
 With a smooth manufactured solution, both methods exhibit decreasing **nodal**
 errors as the mesh is refined. For this particular experiment, observed
 finest-grid rates are about **1.994 (Galerkin)** and **3.994 (SUPG nodal
-error)**. The high SUPG nodal rate is specific to this example; it is **not**
-a general fourth-order FEM convergence claim. See [verification details](docs/verification.md)
+error)**. The high SUPG nodal rate is specific to this example. See [verification details](docs/verification.md)
 and [recorded errors](results/manufactured_convergence.csv).
 
 ## Mathematical model
 
-\[
+$$
 -\varepsilon\phi''(x) + u\phi'(x) = f(x), \quad 0<x<L,
 \qquad \phi(0)=\phi_L, \quad \phi(L)=\phi_R.
-\]
+$$
 
-The Python solver uses **continuous, piecewise-linear (P1) finite elements**
-on a uniform one-dimensional mesh, sparse matrix assembly, and SciPy's sparse
-direct solver. The SUPG method includes a residual-based stabilisation term,
-including the corresponding **source-term contribution**. The coefficient is
+The Python solver uses **continuous, piecewise linear (P1) finite elements**
+on a uniform one dimensional mesh, sparse matrix assembly, and SciPy's sparse
+direct solver. The SUPG method includes a residual based stabilisation term,
+including the corresponding **source term contribution**. The coefficient is
 computed using the classical 1D cell-Péclet formula
 
-\[
+$$
 \mathrm{Pe}_h=\frac{|u|h}{2\varepsilon},\qquad
 \tau=\frac{h}{2|u|}\left(\coth(\mathrm{Pe}_h)-\frac1{\mathrm{Pe}_h}\right).
-\]
+$$
 
 Numerical safeguards handle small Péclet numbers and steep analytical
 boundary layers. The [method documentation](docs/method.md) derives the element
-matrices and explains the scope of the nodal-exactness result.
+matrices and explains the scope of the nodal exactness result.
 
 ## Install and reproduce
 
-Python 3.10+ is required; no MATLAB licence or external PDE solver is needed.
+Python 3.10+ is required, no MATLAB licence or external PDE solver is needed.
 
 ```bash
 python3 -m venv .venv
@@ -97,7 +95,7 @@ linear and quadratic exact solutions, nonzero source terms, positive/negative
 advection, small/large Péclet limits, and smooth-solution grid refinement.
 
 **28 numerical tests passed** in the preparation environment. GitHub Actions
-runs the tests on Python 3.11 and 3.13; CI status must be checked after
+runs the tests on Python 3.11 and 3.13. CI status must be checked after
 publication. See [verification and limitations](docs/verification.md).
 
 ## Repository layout
@@ -117,18 +115,12 @@ legacy/coursework/        Original MATLAB scripts, preserved unchanged
 
 This is a **1D steady transport model**, not a multidimensional CFD or
 Navier–Stokes solver. The original MATLAB scripts were exploratory coursework:
-`assignment1_3.m` uses a 1000-element **numerical Galerkin** solution labelled
-`"Exact"`; the new Python comparison uses an actual analytical solution.
-The historical `advection_diffusion_fem.m` has an incomplete non-FEM source
-branch and an external quadrature dependency; neither issue is silently
-attributed to the tested implementation. See [`legacy/README.md`](legacy/README.md).
+`assignment1_3.m` uses a 1000 element **numerical Galerkin** solution labelled
+`"Exact"`. The new Python comparison uses an actual analytical solution.
+See [`legacy/README.md`](legacy/README.md).
 
-This repository contains only numerical examples and coursework-derived
-algorithms, not confidential or clinical data. The Python redevelopment
-was prepared with AI assistance and checked through independently specified
-numerical tests; the original MATLAB source remains available for audit.
-An open-source licence has not been selected yet; reuse permissions should
-be decided before wider distribution.
+This repository contains only numerical examples and coursework
+algorithms, not confidential or clinical data. 
 
 ## Further reading
 
