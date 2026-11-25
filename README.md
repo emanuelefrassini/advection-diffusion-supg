@@ -93,9 +93,7 @@ The original 1D MATLAB stencil has been independently reconstructed in tests,
 including its additional diffusion in the stabilised case. Other tests cover
 linear and quadratic exact solutions, nonzero source terms, positive/negative
 advection, small/large Péclet limits, and smooth-solution grid refinement.
-
-**28 numerical tests passed** in the preparation environment. GitHub Actions
-runs the tests on Python 3.11 and 3.13. CI status must be checked after
+CI status must be checked after
 publication. See [verification and limitations](docs/verification.md).
 
 ## Repository layout
