@@ -8,7 +8,7 @@ I revisited my Computational Fluid Dynamics coursework and developed this
 standalone Python project to examine why standard Galerkin finite elements can
 produce nonphysical oscillations in advection-dominated regimes, and how
 residual based streamline stabilisation changes the numerical solution.
-Selected, **unchanged** original MATLAB coursework scripts are archived under
+Original MATLAB coursework scripts are archived under
 [`legacy/coursework/`](legacy/coursework/). 
 
 ## Results
