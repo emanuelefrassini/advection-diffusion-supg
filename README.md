@@ -20,7 +20,7 @@ Selected, **unchanged** original MATLAB coursework scripts are archived under
 For the original coursework parameters $L=4$, $u=1$,
 $\varepsilon=0.01$, and **20 linear elements** (cell Péclet number 10),
 the unstabilised Galerkin solution undershoots to **−0.852**. SUPG eliminates
-the nodal oscillations and reproduces the analytical zero-source solution
+the nodal oscillations and reproduces the analytical zero source solution
 at the grid points to numerical precision.
 
 **Caution:** the smooth black curve is the analytical solution and the green
