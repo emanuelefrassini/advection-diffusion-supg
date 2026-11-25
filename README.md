@@ -17,8 +17,8 @@ Selected, **unchanged** original MATLAB coursework scripts are archived under
 
 ![Comparison of Galerkin, SUPG and analytical reference](figures/galerkin_vs_supg.png)
 
-For the original coursework parameters \(L=4\), \(u=1\),
-\(\varepsilon=0.01\), and **20 linear elements** (cell Péclet number 10),
+For the original coursework parameters $L=4$, $u=1$,
+$\varepsilon=0.01$, and **20 linear elements** (cell Péclet number 10),
 the unstabilised Galerkin solution undershoots to **−0.852**. SUPG eliminates
 the nodal oscillations and reproduces the analytical zero-source solution
 at the grid points to numerical precision.
