@@ -1,6 +1,6 @@
 # Advection–Diffusion: Galerkin vs SUPG
 
-**A reproducible Python/SciPy implementation of one dimensional finite element
+**A reproducible Python implementation of one dimensional finite element
 advection–diffusion, comparing standard Galerkin discretisation with
 streamline upwind/Petrov–Galerkin (SUPG) stabilisation.**
 
